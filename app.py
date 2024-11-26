@@ -77,7 +77,7 @@ $ streamlit run app.py
     ''')
 
     st.sidebar.markdown('''<hr>''', unsafe_allow_html=True)
-    st.sidebar.markdown('''<small>[Cheat sheet v1.0](https://github.com/ahammadmejbah/Data-Science-Cheat-Sheet) | Nov 2023 | [Mejbah Ahammad](https://ahammadmejbah.com/)</small>''', unsafe_allow_html=True)
+    st.sidebar.markdown('''<small>[Cheat sheet v1.0](https://github.com/ahammadmejbah/Data-Science-Cheat-Sheet) | Nov 2024 | [Mejbah Ahammad](https://ahammadmejbah.com/)</small>''', unsafe_allow_html=True)
 
 # Main body of cheat sheet
 def ds_body():
@@ -891,7 +891,7 @@ def load():
     pass
 
 default_args = {
-    'start_date': datetime(2023, 1, 1),
+    'start_date': datetime(2024, 1, 1),
 }
 
 with DAG('etl_pipeline', default_args=default_args, schedule_interval='@daily') as dag:
@@ -1540,7 +1540,7 @@ eb open
                 </a>
             </div>
             <br>
-            <small>Cheat sheet v1.0 | Nov 2023 | <a href="https://yourwebsite.com" style="color: #FF4B4B;">Your Name</a></small>
+            <small>Cheat sheet v1.0 | Nov 2024 | <a href="ahammadmejbah.com" style="color: #FF4B4B;">Mejbah Ahammad</a></small>
         </div>
     """, unsafe_allow_html=True)
 
