@@ -83,7 +83,7 @@ def ds_body():
     # Header
     st.markdown(f"""
         <div style="text-align: center; padding: 20px;">
-            <h1 style="color: #FF4B4B;">📊 Comprehensive Data Science Cheat Sheet</h1>
+            <h1 style="color: #FF4B4B;">📊  Data Science Cheat Sheet By Mejbah Ahammad</h1>
         </div>
     """, unsafe_allow_html=True)
 
