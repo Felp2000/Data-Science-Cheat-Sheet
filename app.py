@@ -31,7 +31,7 @@ def ds_sidebar():
     
     st.sidebar.markdown(
         f"""
-        <a href="https://streamlit.io/">
+        <a href="https://ahammadmejbah.com/">
             <img src='data:image/png;base64,{logo_encoded}' class='img-fluid' width=100>
         </a>
         """,
@@ -52,7 +52,7 @@ $ pip install numpy pandas matplotlib seaborn scikit-learn tensorflow pytorch nl
     st.sidebar.code('''
 $ jupyter notebook
 $ python script.py
-$ git clone https://github.com/yourrepo
+$ git clone https://github.com/ahammadmejbah/Data-Science-Cheat-Sheet
 $ streamlit run app.py
     ''')
 
@@ -98,36 +98,12 @@ def ds_body():
                 margin: 0;
                 font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
             }
-            /* Multiline Tabs Styling */
-            div[data-testid="stHorizontalBlock"] {
-                flex-wrap: wrap;
-                padding: 10px 0;
-            }
-            div[data-baseweb="tab-list"] > div > div {
-                display: flex;
-                flex-wrap: wrap;
-            }
-            div[data-baseweb="tab"] {
-                background-color: #FF9068;
-                color: white;
-                border-radius: 5px;
-                padding: 10px 20px;
-                margin: 5px;
-                font-weight: bold;
-                transition: background-color 0.3s;
-            }
-            div[data-baseweb="tab"]:hover {
-                background-color: #FF4B4B;
-                cursor: pointer;
-            }
-            div[data-baseweb="tab--selected"] {
-                background-color: #FF4B4B;
-            }
-            /* Expander Styling */
-            .streamlit-expanderHeader {
-                font-size: 1.1em;
-                font-weight: bold;
+            /* Section Header Styling */
+            .section-header {
                 color: #FF4B4B;
+                font-size: 1.5em;
+                margin-top: 20px;
+                margin-bottom: 10px;
             }
             /* Code Block Styling */
             pre {
@@ -156,17 +132,23 @@ def ds_body():
                 transform: scale(1.1);
             }
             /* Responsive Design */
+            @media (max-width: 1200px) {
+                .section-header {
+                    font-size: 1.3em;
+                }
+                pre {
+                    font-size: 0.85em;
+                }
+            }
             @media (max-width: 768px) {
                 .header h1 {
                     font-size: 2em;
                 }
-                div[data-baseweb="tab"] {
-                    padding: 8px 16px;
-                    margin: 3px;
-                    font-size: 0.9em;
+                .section-header {
+                    font-size: 1.2em;
                 }
-                .footer {
-                    padding: 15px;
+                pre {
+                    font-size: 0.8em;
                 }
                 .social-icons img {
                     width: 25px;
@@ -183,43 +165,25 @@ def ds_body():
         </div>
     """, unsafe_allow_html=True)
 
-    # Create tabs for better navigation
-    tabs = st.tabs([
-        "🔍 Python Basics",
-        "📁 Data Manipulation",
-        "📈 Data Visualization",
-        "🤖 Machine Learning",
-        "🧠 Deep Learning",
-        "📊 Statistical Analysis",
-        "🔧 Data Engineering",
-        "🛠 Tools & Utilities",
-        "🌐 Web Scraping",
-        "📝 Version Control",
-        "☁️ Cloud Services",
-        "🔍 NLP",
-        "📅 Time Series",
-        "🔄 Data Pipelines",
-        "🚀 Deployment"
-    ])
+    # Create three columns
+    col1, col2, col3 = st.columns(3)
 
-    #######################
-    # Tab 1: Python Basics
-    #######################
-    with tabs[0]:
-        st.header('🔍 Python Basics')
-
-        with st.expander("• Importing Libraries"):
-            st.code('''
+    # Distribute sections among the three columns
+    with col1:
+        # Section 1: Python Basics
+        st.markdown('<div class="section-header">🔍 Python Basics</div>', unsafe_allow_html=True)
+        st.markdown('**Importing Libraries**')
+        st.code('''
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import os
 import sys
-            ''', language='python')
+        ''', language='python')
 
-        with st.expander("• Data Structures"):
-            st.code('''
+        st.markdown('**Data Structures**')
+        st.code('''
 # List
 my_list = [1, 2, 3, 4]
 
@@ -231,10 +195,10 @@ my_dict = {'key1': 'value1', 'key2': 'value2'}
 
 # Set
 my_set = {1, 2, 3, 4}
-            ''', language='python')
+        ''', language='python')
 
-        with st.expander("• Control Flow"):
-            st.code('''
+        st.markdown('**Control Flow**')
+        st.code('''
 # If-Else
 if condition:
     # do something
@@ -251,56 +215,29 @@ for i in range(10):
 while condition:
     # do something
     break
-            ''', language='python')
+        ''', language='python')
 
-        with st.expander("• Functions"):
-            st.code('''
+        st.markdown('**Functions**')
+        st.code('''
 def my_function(param1, param2):
     """
     Function description.
     """
     result = param1 + param2
     return result
-            ''', language='python')
+        ''', language='python')
 
-        with st.expander("• List Comprehensions"):
-            st.code('''
+        st.markdown('**List Comprehensions**')
+        st.code('''
 squares = [x**2 for x in range(10)]
 even_squares = [x**2 for x in range(10) if x % 2 == 0]
-            ''', language='python')
+        ''', language='python')
 
-        with st.expander("• Exception Handling"):
-            st.code('''
-try:
-    # code that may raise an exception
-    result = 10 / 0
-except ZeroDivisionError:
-    print("Cannot divide by zero.")
-finally:
-    print("Execution complete.")
-            ''', language='python')
-
-        with st.expander("• File I/O"):
-            st.code('''
-# Reading a file
-with open('file.txt', 'r') as file:
-    data = file.read()
-
-# Writing to a file
-with open('file.txt', 'w') as file:
-    file.write('Hello, World!')
-            ''', language='python')
-
-        # Add more sections as needed...
-
-    ############################
-    # Tab 2: Data Manipulation
-    ############################
-    with tabs[1]:
-        st.header('📁 Data Manipulation')
-
-        with st.expander("• Pandas Basics"):
-            st.code('''
+    with col2:
+        # Section 2: Data Manipulation
+        st.markdown('<div class="section-header">📁 Data Manipulation</div>', unsafe_allow_html=True)
+        st.markdown('**Pandas Basics**')
+        st.code('''
 import pandas as pd
 
 # Create DataFrame
@@ -315,10 +252,10 @@ df = pd.read_csv('data.csv')
 
 # View DataFrame
 df.head()
-            ''', language='python')
+        ''', language='python')
 
-        with st.expander("• Data Selection"):
-            st.code('''
+        st.markdown('**Data Selection**')
+        st.code('''
 # Select column
 df['Age']
 
@@ -330,10 +267,10 @@ df.iloc[0:5]
 
 # Select rows by condition
 df[df['Age'] > 30]
-            ''', language='python')
+        ''', language='python')
 
-        with st.expander("• Data Cleaning"):
-            st.code('''
+        st.markdown('**Data Cleaning**')
+        st.code('''
 # Handle missing values
 df.dropna(inplace=True)
 df.fillna(value=0, inplace=True)
@@ -346,10 +283,10 @@ df['Age'] = df['Age'].astype(int)
 
 # Rename columns
 df.rename(columns={'Name': 'Full Name'}, inplace=True)
-            ''', language='python')
+        ''', language='python')
 
-        with st.expander("• Data Transformation"):
-            st.code('''
+        st.markdown('**Data Transformation**')
+        st.code('''
 # Apply function
 df['Age'] = df['Age'].apply(lambda x: x + 1)
 
@@ -358,10 +295,10 @@ df['Age'] = df['Age'] + 1
 
 # Mapping
 df['City'] = df['City'].map({'New York': 'NY', 'Los Angeles': 'LA', 'Chicago': 'CHI'})
-            ''', language='python')
+        ''', language='python')
 
-        with st.expander("• Merging & Joining"):
-            st.code('''
+        st.markdown('**Merging & Joining**')
+        st.code('''
 # Merge DataFrames
 merged_df = pd.merge(df1, df2, on='Key')
 
@@ -370,37 +307,13 @@ concatenated_df = pd.concat([df1, df2], axis=0)
 
 # Join DataFrames
 joined_df = df1.join(df2, how='inner')
-            ''', language='python')
+        ''', language='python')
 
-        with st.expander("• Grouping & Aggregation"):
-            st.code('''
-# Group by
-grouped = df.groupby('City')
-
-# Aggregation
-grouped['Age'].mean()
-
-# Multiple aggregations
-grouped.agg({'Age': ['mean', 'sum'], 'Salary': 'median'})
-            ''', language='python')
-
-        with st.expander("• Pivot Tables"):
-            st.code('''
-pivot = df.pivot_table(values='Sales', index='Region', columns='Product', aggfunc='sum')
-            ''', language='python')
-
-        # Add more sections as needed...
-
-    #########################
-    # Tab 3: Data Visualization
-    #########################
-    with tabs[2]:
-        st.header('📈 Data Visualization')
-
-        # Matplotlib Section
-        with st.expander("• Matplotlib"):
-            st.subheader('Matplotlib')
-            st.code('''
+    with col3:
+        # Section 3: Data Visualization
+        st.markdown('<div class="section-header">📈 Data Visualization</div>', unsafe_allow_html=True)
+        st.markdown('**Matplotlib**')
+        st.code('''
 import matplotlib.pyplot as plt
 
 # Line Plot
@@ -430,12 +343,10 @@ plt.xlabel('Value')
 plt.ylabel('Frequency')
 plt.title('Histogram')
 plt.show()
-            ''', language='python')
+        ''', language='python')
 
-        # Seaborn Section
-        with st.expander("• Seaborn"):
-            st.subheader('Seaborn')
-            st.code('''
+        st.markdown('**Seaborn**')
+        st.code('''
 import seaborn as sns
 
 # Scatter Plot with Regression Line
@@ -450,12 +361,10 @@ sns.boxplot(x='City', y='Age', data=df)
 
 # Pairplot
 sns.pairplot(df)
-            ''', language='python')
+        ''', language='python')
 
-        # Plotly Section
-        with st.expander("• Plotly"):
-            st.subheader('Plotly')
-            st.code('''
+        st.markdown('**Plotly**')
+        st.code('''
 import plotly.express as px
 
 # Scatter Plot
@@ -473,50 +382,16 @@ fig.show()
 # Histogram
 fig = px.histogram(df, x='Age', nbins=10)
 fig.show()
-            ''', language='python')
+        ''', language='python')
 
-        # Altair Section
-        with st.expander("• Altair"):
-            st.subheader('Altair')
-            st.code('''
-import altair as alt
+    # Second row of columns
+    col4, col5, col6 = st.columns(3)
 
-# Simple Line Chart
-chart = alt.Chart(df).mark_line().encode(
-    x='Date',
-    y='Sales'
-)
-chart.show()
-
-# Interactive Scatter Plot
-chart = alt.Chart(df).mark_circle().encode(
-    x='Age',
-    y='Salary',
-    color='City',
-    tooltip=['Name', 'Age', 'Salary']
-).interactive()
-chart.show()
-            ''', language='python')
-
-        # Plotly Express Example
-        with st.expander("• Plotly Express Example"):
-            st.subheader('Plotly Express Example')
-            st.code('''
-# Interactive Scatter Plot
-fig = px.scatter(df, x='Age', y='Salary', color='City', hover_data=['Name'])
-st.plotly_chart(fig)
-            ''', language='python')
-
-        # Add more visualization libraries and examples as needed...
-
-    #########################
-    # Tab 4: Machine Learning
-    #########################
-    with tabs[3]:
-        st.header('🤖 Machine Learning')
-
-        with st.expander("• Scikit-learn Basics"):
-            st.code('''
+    with col4:
+        # Section 4: Machine Learning
+        st.markdown('<div class="section-header">🤖 Machine Learning</div>', unsafe_allow_html=True)
+        st.markdown('**Scikit-learn Basics**')
+        st.code('''
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error, r2_score
@@ -537,10 +412,10 @@ predictions = model.predict(X_test)
 mse = mean_squared_error(y_test, predictions)
 r2 = r2_score(y_test, predictions)
 print(f'MSE: {mse}, R2: {r2}')
-            ''', language='python')
+        ''', language='python')
 
-        with st.expander("• Classification Example"):
-            st.code('''
+        st.markdown('**Classification Example**')
+        st.code('''
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
 
@@ -560,20 +435,20 @@ print('Confusion Matrix:')
 print(conf_matrix)
 print('Classification Report:')
 print(report)
-            ''', language='python')
+        ''', language='python')
 
-        with st.expander("• Cross-Validation"):
-            st.code('''
+        st.markdown('**Cross-Validation**')
+        st.code('''
 from sklearn.model_selection import cross_val_score
 
 # 5-Fold Cross-Validation
 scores = cross_val_score(model, X, y, cv=5)
 print(f'Cross-Validation Scores: {scores}')
 print(f'Average CV Score: {scores.mean()}')
-            ''', language='python')
+        ''', language='python')
 
-        with st.expander("• Hyperparameter Tuning with GridSearchCV"):
-            st.code('''
+        st.markdown('**Hyperparameter Tuning with GridSearchCV**')
+        st.code('''
 from sklearn.model_selection import GridSearchCV
 
 # Define parameter grid
@@ -594,19 +469,20 @@ print(grid_search.best_params_)
 
 # Best score
 print(grid_search.best_score_)
-            ''', language='python')
+        ''', language='python')
 
-        with st.expander("• Feature Scaling"):
-            st.code('''
+    with col5:
+        st.markdown('**Feature Scaling**')
+        st.code('''
 from sklearn.preprocessing import StandardScaler
 
 scaler = StandardScaler()
 X_train_scaled = scaler.fit_transform(X_train)
 X_test_scaled = scaler.transform(X_test)
-            ''', language='python')
+        ''', language='python')
 
-        with st.expander("• Handling Categorical Variables"):
-            st.code('''
+        st.markdown('**Handling Categorical Variables**')
+        st.code('''
 # One-Hot Encoding
 X = pd.get_dummies(X, columns=['Category'])
 
@@ -614,18 +490,14 @@ X = pd.get_dummies(X, columns=['Category'])
 from sklearn.preprocessing import LabelEncoder
 le = LabelEncoder()
 X['Category'] = le.fit_transform(X['Category'])
-            ''', language='python')
+        ''', language='python')
 
-        # Add more ML algorithms and examples...
+        # Additional content can be added here as needed.
 
-    #########################
-    # Tab 5: Deep Learning
-    #########################
-    with tabs[4]:
-        st.header('🧠 Deep Learning')
-
-        with st.expander("• TensorFlow/Keras Basics"):
-            st.code('''
+    with col6:
+        st.markdown('<div class="section-header">🧠 Deep Learning</div>', unsafe_allow_html=True)
+        st.markdown('**TensorFlow/Keras Basics**')
+        st.code('''
 import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras import layers
@@ -648,10 +520,10 @@ model.fit(X_train, y_train, epochs=10, batch_size=32, validation_split=0.2)
 # Evaluate the model
 loss, accuracy = model.evaluate(X_test, y_test)
 print(f'Loss: {loss}, Accuracy: {accuracy}')
-            ''', language='python')
+        ''', language='python')
 
-        with st.expander("• PyTorch Basics"):
-            st.code('''
+        st.markdown('**PyTorch Basics**')
+        st.code('''
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -692,10 +564,10 @@ for epoch in range(100):
         optimizer.step()
     if (epoch+1) % 10 == 0:
         print(f'Epoch {epoch+1}, Loss: {loss.item()}')
-            ''', language='python')
+        ''', language='python')
 
-        with st.expander("• Convolutional Neural Networks (CNN)"):
-            st.code('''
+        st.markdown('**Convolutional Neural Networks (CNN)**')
+        st.code('''
 from tensorflow.keras import layers, models
 
 # Define CNN model
@@ -716,38 +588,16 @@ model.compile(optimizer='adam',
               metrics=['accuracy'])
 
 model.fit(train_images, train_labels, epochs=10, validation_data=(test_images, test_labels))
-            ''', language='python')
+        ''', language='python')
 
-        with st.expander("• Recurrent Neural Networks (RNN)"):
-            st.code('''
-from tensorflow.keras import layers, models
+    # Third row of columns
+    col7, col8, col9 = st.columns(3)
 
-# Define RNN model
-model = models.Sequential([
-    layers.Embedding(input_dim=vocab_size, output_dim=embedding_dim, input_length=max_length),
-    layers.SimpleRNN(128, return_sequences=True),
-    layers.SimpleRNN(128),
-    layers.Dense(1, activation='sigmoid')
-])
-
-# Compile and train
-model.compile(optimizer='adam',
-              loss='binary_crossentropy',
-              metrics=['accuracy'])
-
-model.fit(X_train, y_train, epochs=10, batch_size=64, validation_split=0.2)
-            ''', language='python')
-
-        # Add more deep learning models and examples...
-
-    #########################
-    # Tab 6: Statistical Analysis
-    #########################
-    with tabs[5]:
-        st.header('📊 Statistical Analysis')
-
-        with st.expander("• Descriptive Statistics"):
-            st.code('''
+    with col7:
+        # Section 5: Statistical Analysis
+        st.markdown('<div class="section-header">📊 Statistical Analysis</div>', unsafe_allow_html=True)
+        st.markdown('**Descriptive Statistics**')
+        st.code('''
 # Summary statistics
 df.describe()
 
@@ -755,10 +605,10 @@ df.describe()
 df['Age'].mean()
 df['Age'].median()
 df['Age'].mode()
-            ''', language='python')
+        ''', language='python')
 
-        with st.expander("• Probability Distributions"):
-            st.code('''
+        st.markdown('**Probability Distributions**')
+        st.code('''
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -771,10 +621,10 @@ plt.show()
 data = np.random.binomial(n=10, p=0.5, size=1000)
 plt.hist(data, bins=30)
 plt.show()
-            ''', language='python')
+        ''', language='python')
 
-        with st.expander("• Hypothesis Testing"):
-            st.code('''
+        st.markdown('**Hypothesis Testing**')
+        st.code('''
 from scipy import stats
 
 # T-Test
@@ -785,10 +635,11 @@ chi2, p, dof, ex = stats.chi2_contingency(table)
 
 # ANOVA
 f_stat, p_val = stats.f_oneway(group1, group2, group3)
-            ''', language='python')
+        ''', language='python')
 
-        with st.expander("• Correlation Analysis"):
-            st.code('''
+    with col8:
+        st.markdown('**Correlation Analysis**')
+        st.code('''
 # Pearson Correlation
 pearson_corr = df['A'].corr(df['B'])
 
@@ -797,10 +648,10 @@ spearman_corr = df['A'].corr(df['B'], method='spearman')
 
 # Kendall Correlation
 kendall_corr = df['A'].corr(df['B'], method='kendall')
-            ''', language='python')
+        ''', language='python')
 
-        with st.expander("• Confidence Intervals"):
-            st.code('''
+        st.markdown('**Confidence Intervals**')
+        st.code('''
 import scipy.stats as st
 
 # 95% Confidence Interval for the mean
@@ -810,18 +661,14 @@ mean = np.mean(data)
 stderr = stats.sem(data)
 h = stderr * st.t.ppf((1 + confidence) / 2., n-1)
 print(f'Confidence Interval: {mean-h} to {mean+h}')
-            ''', language='python')
+        ''', language='python')
 
-        # Add more statistical concepts and examples...
+        # Additional content can be added here as needed.
 
-    #########################
-    # Tab 7: Data Engineering
-    #########################
-    with tabs[6]:
-        st.header('🔧 Data Engineering')
-
-        with st.expander("• SQL Basics"):
-            st.code('''
+    with col9:
+        st.markdown('<div class="section-header">🔧 Data Engineering</div>', unsafe_allow_html=True)
+        st.markdown('**SQL Basics**')
+        st.code('''
 -- Select statement
 SELECT column1, column2 FROM table_name;
 
@@ -840,10 +687,10 @@ GROUP BY column;
 
 -- Order By
 SELECT * FROM table ORDER BY column DESC;
-            ''', language='sql')
+        ''', language='sql')
 
-        with st.expander("• Database Connections with SQLAlchemy"):
-            st.code('''
+        st.markdown('**Database Connections with SQLAlchemy**')
+        st.code('''
 from sqlalchemy import create_engine
 import pandas as pd
 
@@ -855,10 +702,10 @@ df = pd.read_sql('SELECT * FROM table_name', engine)
 
 # Write DataFrame to SQL
 df.to_sql('table_name', engine, if_exists='replace', index=False)
-            ''', language='python')
+        ''', language='python')
 
-        with st.expander("• ETL Processes"):
-            st.code('''
+        st.markdown('**ETL Processes**')
+        st.code('''
 # Extract, Transform, Load (ETL) example using Pandas
 import pandas as pd
 
@@ -870,10 +717,10 @@ df['Age'] = df['Age'].fillna(df['Age'].mean())
 
 # Load
 df.to_csv('clean_data.csv', index=False)
-            ''', language='python')
+        ''', language='python')
 
-        with st.expander("• Data Pipelines with Airflow"):
-            st.code('''
+        st.markdown('**Data Pipelines with Airflow**')
+        st.code('''
 from airflow import DAG
 from airflow.operators.python_operator import PythonOperator
 from datetime import datetime
@@ -900,18 +747,16 @@ with DAG('etl_pipeline', default_args=default_args, schedule_interval='@daily') 
     load_task = PythonOperator(task_id='load', python_callable=load)
 
     extract_task >> transform_task >> load_task
-            ''', language='python')
+        ''', language='python')
 
-        # Add more data engineering tools and examples...
+    # Fourth row of columns
+    col10, col11, col12 = st.columns(3)
 
-    #########################
-    # Tab 8: Tools & Utilities
-    #########################
-    with tabs[7]:
-        st.header('🛠 Tools & Utilities')
-
-        with st.expander("• Virtual Environments with venv"):
-            st.code('''
+    with col10:
+        # Section 6: Tools & Utilities
+        st.markdown('<div class="section-header">🛠 Tools & Utilities</div>', unsafe_allow_html=True)
+        st.markdown('**Virtual Environments with venv**')
+        st.code('''
 # Create virtual environment
 python -m venv myenv
 
@@ -923,10 +768,10 @@ source myenv/bin/activate
 
 # Deactivate
 deactivate
-            ''', language='bash')
+        ''', language='bash')
 
-        with st.expander("• Package Management with pip"):
-            st.code('''
+        st.markdown('**Package Management with pip**')
+        st.code('''
 # Install a package
 pip install package_name
 
@@ -938,10 +783,10 @@ pip freeze > requirements.txt
 
 # Install from requirements
 pip install -r requirements.txt
-            ''', language='bash')
+        ''', language='bash')
 
-        with st.expander("• Docker Basics"):
-            st.code('''
+        st.markdown('**Docker Basics**')
+        st.code('''
 # Pull an image
 docker pull python:3.8
 
@@ -956,10 +801,11 @@ docker ps
 
 # Stop a container
 docker stop container_id
-            ''', language='bash')
+        ''', language='bash')
 
-        with st.expander("• Jupyter Notebook Shortcuts"):
-            st.code('''
+    with col11:
+        st.markdown('**Jupyter Notebook Shortcuts**')
+        st.code('''
 # Create a new notebook
 jupyter notebook
 
@@ -970,15 +816,15 @@ jupyter notebook
 - B: Insert cell below
 - M: Convert to Markdown
 - Y: Convert to Code
-            ''', language='text')
+        ''', language='text')
 
-        with st.expander("• Git Commands"):
-            st.code('''
+        st.markdown('**Git Commands**')
+        st.code('''
 # Initialize repository
 git init
 
 # Clone repository
-git clone https://github.com/user/repo.git
+git clone https://github.com/ahammadmejbah/Data-Science-Cheat-Sheet.git
 
 # Check status
 git status
@@ -994,18 +840,15 @@ git push origin main
 
 # Pull from remote
 git pull origin main
-            ''', language='bash')
+        ''', language='bash')
 
-        # Add more tools and utilities...
+        # Additional content can be added here as needed.
 
-    #########################
-    # Tab 9: Web Scraping
-    #########################
-    with tabs[8]:
-        st.header('🌐 Web Scraping')
-
-        with st.expander("• BeautifulSoup Basics"):
-            st.code('''
+    with col12:
+        # Section 7: Web Scraping
+        st.markdown('<div class="section-header">🌐 Web Scraping</div>', unsafe_allow_html=True)
+        st.markdown('**BeautifulSoup Basics**')
+        st.code('''
 import requests
 from bs4 import BeautifulSoup
 
@@ -1020,10 +863,10 @@ titles = soup.find_all('h2')
 
 for title in titles:
     print(title.get_text())
-            ''', language='python')
+        ''', language='python')
 
-        with st.expander("• Scrapy Framework"):
-            st.code('''
+        st.markdown('**Scrapy Framework**')
+        st.code('''
 import scrapy
 
 class ExampleSpider(scrapy.Spider):
@@ -1036,10 +879,10 @@ class ExampleSpider(scrapy.Spider):
 
 # To run the spider
 # scrapy runspider example_spider.py -o output.json
-            ''', language='python')
+        ''', language='python')
 
-        with st.expander("• Handling JavaScript with Selenium"):
-            st.code('''
+        st.markdown('**Handling JavaScript with Selenium**')
+        st.code('''
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 import time
@@ -1060,23 +903,21 @@ for title in titles:
 
 # Close browser
 driver.quit()
-            ''', language='python')
+        ''', language='python')
 
-        # Add more web scraping tools and examples...
+    # Fifth row of columns
+    col13, col14, col15 = st.columns(3)
 
-    #########################
-    # Tab 10: Version Control
-    #########################
-    with tabs[9]:
-        st.header('📝 Version Control with Git')
-
-        with st.expander("• Basic Git Commands"):
-            st.code('''
+    with col13:
+        # Section 8: Version Control
+        st.markdown('<div class="section-header">📝 Version Control</div>', unsafe_allow_html=True)
+        st.markdown('**Basic Git Commands**')
+        st.code('''
 # Initialize repository
 git init
 
 # Clone repository
-git clone https://github.com/user/repo.git
+git clone https://github.com/ahammadmejbah/Data-Science-Cheat-Sheet.git
 
 # Check status
 git status
@@ -1092,10 +933,10 @@ git push origin main
 
 # Pull from remote
 git pull origin main
-            ''', language='bash')
+        ''', language='bash')
 
-        with st.expander("• Branching"):
-            st.code('''
+        st.markdown('**Branching**')
+        st.code('''
 # Create a new branch
 git branch feature-branch
 
@@ -1111,10 +952,10 @@ git merge feature-branch
 
 # Delete branch
 git branch -d feature-branch
-            ''', language='bash')
+        ''', language='bash')
 
-        with st.expander("• Stashing Changes"):
-            st.code('''
+        st.markdown('**Stashing Changes**')
+        st.code('''
 # Stash changes
 git stash
 
@@ -1126,26 +967,21 @@ git stash list
 
 # Drop a stash
 git stash drop stash@{0}
-            ''', language='bash')
+        ''', language='bash')
 
-        with st.expander("• Resolving Conflicts"):
-            st.code('''
+        st.markdown('**Resolving Conflicts**')
+        st.code('''
 # After a merge conflict, edit the files to resolve
 # Then add and commit
 git add conflicted_file.py
 git commit -m "Resolved merge conflict in conflicted_file.py"
-            ''', language='bash')
+        ''', language='bash')
 
-        # Add more Git commands and workflows...
-
-    #########################
-    # Tab 11: Cloud Services
-    #########################
-    with tabs[10]:
-        st.header('☁️ Cloud Services')
-
-        with st.expander("• AWS Basics"):
-            st.code('''
+    with col14:
+        # Section 9: Cloud Services
+        st.markdown('<div class="section-header">☁️ Cloud Services</div>', unsafe_allow_html=True)
+        st.markdown('**AWS Basics**')
+        st.code('''
 # Install AWS CLI
 pip install awscli
 
@@ -1157,10 +993,10 @@ aws s3 ls
 
 # Upload a file to S3
 aws s3 cp local_file.txt s3://mybucket/
-            ''', language='bash')
+        ''', language='bash')
 
-        with st.expander("• Google Cloud Platform (GCP) Basics"):
-            st.code('''
+        st.markdown('**Google Cloud Platform (GCP) Basics**')
+        st.code('''
 # Install Google Cloud SDK
 # Initialize
 gcloud init
@@ -1170,10 +1006,10 @@ gcloud projects list
 
 # Deploy to App Engine
 gcloud app deploy
-            ''', language='bash')
+        ''', language='bash')
 
-        with st.expander("• Microsoft Azure Basics"):
-            st.code('''
+        st.markdown('**Microsoft Azure Basics**')
+        st.code('''
 # Install Azure CLI
 # Login
 az login
@@ -1183,10 +1019,10 @@ az group list
 
 # Create a resource group
 az group create --name myResourceGroup --location eastus
-            ''', language='bash')
+        ''', language='bash')
 
-        with st.expander("• Deploying Models to AWS SageMaker"):
-            st.code('''
+        st.markdown('**Deploying Models to AWS SageMaker**')
+        st.code('''
 import boto3
 import sagemaker
 from sagemaker import get_execution_role
@@ -1203,99 +1039,13 @@ model = SKLearnModel(model_data='s3://path-to-model/model.tar.gz',
 
 # Deploy model
 predictor = model.deploy(instance_type='ml.m4.xlarge', initial_instance_count=1)
-            ''', language='python')
+        ''', language='python')
 
-        # Add more cloud services and deployment examples...
-
-    #########################
-    # Tab 12: Natural Language Processing (NLP)
-    #########################
-    with tabs[11]:
-        st.header('🔍 Natural Language Processing (NLP)')
-
-        with st.expander("• Text Preprocessing"):
-            st.code('''
-import nltk
-from nltk.corpus import stopwords
-from nltk.stem import WordNetLemmatizer
-
-# Download NLTK data
-nltk.download('stopwords')
-nltk.download('wordnet')
-
-# Initialize
-stop_words = set(stopwords.words('english'))
-lemmatizer = WordNetLemmatizer()
-
-# Preprocess text
-def preprocess(text):
-    tokens = nltk.word_tokenize(text.lower())
-    tokens = [word for word in tokens if word.isalpha() and word not in stop_words]
-    tokens = [lemmatizer.lemmatize(word) for word in tokens]
-    return tokens
-            ''', language='python')
-
-        with st.expander("• Bag of Words with Scikit-learn"):
-            st.code('''
-from sklearn.feature_extraction.text import CountVectorizer
-
-# Initialize CountVectorizer
-vectorizer = CountVectorizer()
-
-# Fit and transform
-X = vectorizer.fit_transform(documents)
-
-# Get feature names
-features = vectorizer.get_feature_names_out()
-            ''', language='python')
-
-        with st.expander("• TF-IDF Vectorization"):
-            st.code('''
-from sklearn.feature_extraction.text import TfidfVectorizer
-
-# Initialize TfidfVectorizer
-tfidf = TfidfVectorizer()
-
-# Fit and transform
-X = tfidf.fit_transform(documents)
-            ''', language='python')
-
-        with st.expander("• Word Embeddings with Gensim"):
-            st.code('''
-from gensim.models import Word2Vec
-
-# Tokenize sentences
-sentences = [doc.split() for doc in documents]
-
-# Train Word2Vec model
-model = Word2Vec(sentences, vector_size=100, window=5, min_count=1, workers=4)
-
-# Get vector for a word
-vector = model.wv['data']
-            ''', language='python')
-
-        with st.expander("• Sentiment Analysis with NLTK"):
-            st.code('''
-from nltk.sentiment import SentimentIntensityAnalyzer
-
-# Initialize
-sia = SentimentIntensityAnalyzer()
-
-# Analyze sentiment
-sentiment = sia.polarity_scores("I love Data Science!")
-print(sentiment)
-            ''', language='python')
-
-        # Add more NLP techniques and examples...
-
-    #########################
-    # Tab 13: Time Series
-    #########################
-    with tabs[12]:
-        st.header('📅 Time Series')
-
-        with st.expander("• Time Series Decomposition"):
-            st.code('''
+    with col15:
+        # Section 10: Time Series
+        st.markdown('<div class="section-header">📅 Time Series</div>', unsafe_allow_html=True)
+        st.markdown('**Time Series Decomposition**')
+        st.code('''
 import pandas as pd
 from statsmodels.tsa.seasonal import seasonal_decompose
 import matplotlib.pyplot as plt
@@ -1307,10 +1057,10 @@ df = pd.read_csv('timeseries.csv', parse_dates=['Date'], index_col='Date')
 decomposition = seasonal_decompose(df['Value'], model='additive')
 decomposition.plot()
 plt.show()
-            ''', language='python')
+        ''', language='python')
 
-        with st.expander("• ARIMA Modeling"):
-            st.code('''
+        st.markdown('**ARIMA Modeling**')
+        st.code('''
 from statsmodels.tsa.arima.model import ARIMA
 
 # Fit ARIMA model
@@ -1323,10 +1073,10 @@ print(model_fit.summary())
 # Forecast
 forecast = model_fit.forecast(steps=10)
 print(forecast)
-            ''', language='python')
+        ''', language='python')
 
-        with st.expander("• Prophet Forecasting"):
-            st.code('''
+        st.markdown('**Prophet Forecasting**')
+        st.code('''
 from fbprophet import Prophet
 
 # Prepare data
@@ -1345,27 +1095,25 @@ forecast = model.predict(future)
 # Plot
 model.plot(forecast)
 plt.show()
-            ''', language='python')
+        ''', language='python')
 
-        with st.expander("• Rolling Statistics"):
-            st.code('''
+        st.markdown('**Rolling Statistics**')
+        st.code('''
 # Moving Average
 df['MA'] = df['Value'].rolling(window=12).mean()
 
 # Moving Standard Deviation
 df['STD'] = df['Value'].rolling(window=12).std()
-            ''', language='python')
+        ''', language='python')
 
-        # Add more time series analysis techniques and examples...
+    # Fourth row of columns
+    col16, col17, col18 = st.columns(3)
 
-    #########################
-    # Tab 14: Data Pipelines
-    #########################
-    with tabs[13]:
-        st.header('🔄 Data Pipelines')
-
-        with st.expander("• Scikit-learn Pipelines"):
-            st.code('''
+    with col16:
+        # Section 11: Data Pipelines
+        st.markdown('<div class="section-header">🔄 Data Pipelines</div>', unsafe_allow_html=True)
+        st.markdown('**Scikit-learn Pipelines**')
+        st.code('''
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LogisticRegression
@@ -1381,10 +1129,10 @@ pipeline.fit(X_train, y_train)
 
 # Predict
 predictions = pipeline.predict(X_test)
-            ''', language='python')
+        ''', language='python')
 
-        with st.expander("• FeatureUnion for Parallel Processing"):
-            st.code('''
+        st.markdown('**FeatureUnion for Parallel Processing**')
+        st.code('''
 from sklearn.pipeline import FeatureUnion
 from sklearn.decomposition import PCA
 from sklearn.feature_selection import SelectKBest
@@ -1402,10 +1150,10 @@ pipeline = Pipeline([
 ])
 
 pipeline.fit(X_train, y_train)
-            ''', language='python')
+        ''', language='python')
 
-        with st.expander("• Custom Transformers"):
-            st.code('''
+        st.markdown('**Custom Transformers**')
+        st.code('''
 from sklearn.base import BaseEstimator, TransformerMixin
 
 class CustomTransformer(BaseEstimator, TransformerMixin):
@@ -1424,18 +1172,13 @@ pipeline = Pipeline([
     ('custom', CustomTransformer(param=2)),
     ('clf', LogisticRegression())
 ])
-            ''', language='python')
+        ''', language='python')
 
-        # Add more pipeline components and examples...
-
-    #########################
-    # Tab 15: Deployment
-    #########################
-    with tabs[14]:
-        st.header('🚀 Deployment')
-
-        with st.expander("• Saving and Loading Models"):
-            st.code('''
+    with col17:
+        # Section 12: Deployment
+        st.markdown('<div class="section-header">🚀 Deployment</div>', unsafe_allow_html=True)
+        st.markdown('**Saving and Loading Models**')
+        st.code('''
 import joblib
 import pickle
 
@@ -1452,10 +1195,10 @@ with open('model.pkl', 'wb') as f:
 # Load with pickle
 with open('model.pkl', 'rb') as f:
     model = pickle.load(f)
-            ''', language='python')
+        ''', language='python')
 
-        with st.expander("• Deploying with Streamlit"):
-            st.code('''
+        st.markdown('**Deploying with Streamlit**')
+        st.code('''
 # Create a simple Streamlit app to deploy the model
 import streamlit as st
 import joblib
@@ -1472,10 +1215,10 @@ feature2 = st.number_input('Feature 2')
 if st.button('Predict'):
     prediction = model.predict([[feature1, feature2]])
     st.write(f'Prediction: {prediction[0]}')
-            ''', language='python')
+        ''', language='python')
 
-        with st.expander("• Deploying with Flask"):
-            st.code('''
+        st.markdown('**Deploying with Flask**')
+        st.code('''
 from flask import Flask, request, jsonify
 import joblib
 
@@ -1490,10 +1233,11 @@ def predict():
 
 if __name__ == '__main__':
     app.run(debug=True)
-            ''', language='python')
+        ''', language='python')
 
-        with st.expander("• Deploying with Docker"):
-            st.code('''
+    with col18:
+        st.markdown('**Deploying with Docker**')
+        st.code('''
 # Dockerfile
 FROM python:3.8-slim
 
@@ -1505,10 +1249,10 @@ RUN pip install -r requirements.txt
 COPY . .
 
 CMD ["streamlit", "run", "app.py"]
-            ''', language='dockerfile')
+        ''', language='dockerfile')
 
-        with st.expander("• Deploying to AWS Elastic Beanstalk"):
-            st.code('''
+        st.markdown('**Deploying to AWS Elastic Beanstalk**')
+        st.code('''
 # Initialize Elastic Beanstalk
 eb init -p python-3.8 my-app
 
@@ -1517,9 +1261,7 @@ eb create my-app-env
 
 # Open the app
 eb open
-            ''', language='bash')
-
-        # Add more deployment methods and examples...
+        ''', language='bash')
 
     # Footer with social media links
     st.markdown(f"""
@@ -1540,7 +1282,7 @@ eb open
                 </a>
             </div>
             <br>
-            <small>Cheat sheet v1.0 | Nov 2024 | <a href="ahammadmejbah.com" style="color: #FF4B4B;">Mejbah Ahammad</a></small>
+            <small>Cheat sheet v1.0 | Nov 2024 | <a href="https://ahammadmejbah.com/" style="color: #FF4B4B;">Mejbah Ahammad</a></small>
         </div>
     """, unsafe_allow_html=True)
 
