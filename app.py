@@ -87,10 +87,29 @@ def ds_body():
         </div>
     """, unsafe_allow_html=True)
 
-    # Define sections and their content
-    sections = {
-        "🐍 Python": {
-            "Importing Libraries": '''
+    # Horizontal Navigation Tabs
+    tabs = st.tabs([
+        "🐍 Python", 
+        "📁 Data Manipulation", 
+        "📈 Data Visualization", 
+        "🤖 Machine Learning", 
+        "🧠 Deep Learning", 
+        "📊 Statistical Analysis", 
+        "🔧 Data Engineering", 
+        "🌐 Web Scraping", 
+        "📝 Version Control", 
+        "☁️ Cloud Services", 
+        "🔍 NLP", 
+        "📅 Time Series", 
+        "🔄 Data Pipelines", 
+        "🚀 Deployment"
+    ])
+
+    # Python Tab
+    with tabs[0]:
+        st.markdown('### 🐍 Python')
+        st.markdown('#### Importing Libraries')
+        st.code('''
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -104,8 +123,10 @@ from collections import defaultdict
 from itertools import combinations
 from datetime import datetime
 from pathlib import Path
-            ''',
-            "Data Structures": '''
+        ''', language='python')
+
+        st.markdown('#### Data Structures')
+        st.code('''
 # List
 my_list = [1, 2, 3, 4]
 
@@ -124,8 +145,10 @@ even_squares = [x**2 for x in range(10) if x % 2 == 0]
 
 # Dictionary Comprehension
 square_dict = {x: x**2 for x in range(10)}
-            ''',
-            "Control Flow": '''
+        ''', language='python')
+
+        st.markdown('#### Control Flow')
+        st.code('''
 # If-Else
 if condition:
     # do something
@@ -142,8 +165,10 @@ for i in range(10):
 while condition:
     # do something
     break
-            ''',
-            "Functions": '''
+        ''', language='python')
+
+        st.markdown('#### Functions')
+        st.code('''
 def my_function(param1, param2):
     """
     Function description.
@@ -168,8 +193,10 @@ def say_hello():
     print("Hello!")
 
 say_hello()
-            ''',
-            "Exception Handling": '''
+        ''', language='python')
+
+        st.markdown('#### Exception Handling')
+        st.code('''
 try:
     # code that may raise an exception
     result = 10 / 0
@@ -179,8 +206,10 @@ except Exception as e:
     print(f"An error occurred: {e}")
 finally:
     print("Execution complete.")
-            ''',
-            "File I/O": '''
+        ''', language='python')
+
+        st.markdown('#### File I/O')
+        st.code('''
 # Reading a file
 with open('file.txt', 'r') as file:
     data = file.read()
@@ -194,8 +223,10 @@ df = pd.read_csv('data.csv')
 
 # Writing DataFrame to CSV
 df.to_csv('output.csv', index=False)
-            ''',
-            "Modules and Packages": '''
+        ''', language='python')
+
+        st.markdown('#### Modules and Packages')
+        st.code('''
 # Importing a module
 import math
 
@@ -216,10 +247,13 @@ from mypackage import module1, module2
 # Using functions from modules
 module1.function_a()
 module2.function_b()
-            '''
-        },
-        "📁 Data Manipulation": {
-            "Pandas Basics": '''
+        ''', language='python')
+
+    # Data Manipulation Tab
+    with tabs[1]:
+        st.markdown('### 📁 Data Manipulation')
+        st.markdown('#### Pandas Basics')
+        st.code('''
 import pandas as pd
 
 # Create DataFrame
@@ -240,8 +274,10 @@ df.info()
 
 # Summary statistics
 df.describe()
-            ''',
-            "Data Selection": '''
+        ''', language='python')
+
+        st.markdown('#### Data Selection')
+        st.code('''
 # Select column
 df['Age']
 
@@ -259,8 +295,10 @@ df.loc[df['City'] == 'New York']
 
 # Select rows using iloc
 df.iloc[[0, 2, 4]]
-            ''',
-            "Data Cleaning": '''
+        ''', language='python')
+
+        st.markdown('#### Data Cleaning')
+        st.code('''
 # Handle missing values
 df.dropna(inplace=True)
 df.fillna(value=0, inplace=True)
@@ -279,8 +317,10 @@ df['City'].replace({'New York': 'NY', 'Los Angeles': 'LA'}, inplace=True)
 
 # Filtering out outliers
 df = df[df['Salary'] < df['Salary'].quantile(0.95)]
-            ''',
-            "Data Transformation": '''
+        ''', language='python')
+
+        st.markdown('#### Data Transformation')
+        st.code('''
 # Apply function
 df['Age'] = df['Age'].apply(lambda x: x + 1)
 
@@ -298,8 +338,10 @@ df['Salary_Per_Age'] = df['Salary'] / df['Age']
 
 # String operations
 df['Name'] = df['Name'].str.upper()
-            ''',
-            "Merging & Joining": '''
+        ''', language='python')
+
+        st.markdown('#### Merging & Joining')
+        st.code('''
 # Merge DataFrames
 merged_df = pd.merge(df1, df2, on='Key', how='inner')
 
@@ -314,8 +356,10 @@ merged_df = pd.merge(df1, df2, on=['Key1', 'Key2'], how='outer')
 
 # Merge with indicator
 merged_df = pd.merge(df1, df2, on='Key', how='outer', indicator=True)
-            ''',
-            "Grouping & Aggregation": '''
+        ''', language='python')
+
+        st.markdown('#### Grouping & Aggregation')
+        st.code('''
 # Group by
 grouped = df.groupby('City')
 
@@ -333,8 +377,10 @@ grouped.agg({
     'Salary': ['mean', 'sum'],
     'Experience': lambda x: x.max() - x.min()
 })
-            ''',
-            "Pivot Tables": '''
+        ''', language='python')
+
+        st.markdown('#### Pivot Tables')
+        st.code('''
 # Create pivot table
 pivot = df.pivot_table(values='Sales', index='Region', columns='Product', aggfunc='sum', fill_value=0)
 
@@ -343,10 +389,13 @@ pivot = df.pivot_table(values='Sales', index='Region', columns='Product', aggfun
 
 # Adding margins
 pivot = df.pivot_table(values='Sales', index='Region', columns='Product', aggfunc='sum', margins=True, fill_value=0)
-            '''
-        },
-        "📈 Data Visualization": {
-            "Matplotlib": '''
+        ''', language='python')
+
+    # Data Visualization Tab
+    with tabs[2]:
+        st.markdown('### 📈 Data Visualization')
+        st.markdown('#### Matplotlib')
+        st.code('''
 import matplotlib.pyplot as plt
 
 # Line Plot
@@ -389,9 +438,12 @@ plt.pie(sizes, labels=labels, autopct='%1.1f%%', startangle=140)
 plt.title('Pie Chart')
 plt.axis('equal')
 plt.show()
-            ''',
-            "Seaborn": '''
+        ''', language='python')
+
+        st.markdown('#### Seaborn')
+        st.code('''
 import seaborn as sns
+import matplotlib.pyplot as plt
 
 # Scatter Plot with Regression Line
 sns.lmplot(x='Age', y='Salary', data=df, aspect=1.5)
@@ -420,8 +472,10 @@ plt.figure(figsize=(10,6))
 sns.violinplot(x='City', y='Salary', data=df)
 plt.title('Salary Distribution by City')
 plt.show()
-            ''',
-            "Plotly": '''
+        ''', language='python')
+
+        st.markdown('#### Plotly')
+        st.code('''
 import plotly.express as px
 
 # Scatter Plot
@@ -443,9 +497,12 @@ fig.show()
 # Pie Chart
 fig = px.pie(df, names='Product', values='Sales', title='Sales Distribution by Product')
 fig.show()
-            ''',
-            "Altair": '''
+        ''', language='python')
+
+        st.markdown('#### Altair')
+        st.code('''
 import altair as alt
+import matplotlib.pyplot as plt
 
 # Simple Line Chart
 chart = alt.Chart(df).mark_line().encode(
@@ -496,8 +553,10 @@ chart = alt.Chart(df).mark_line().encode(
     title='Sales Over Time by City'
 ).interactive()
 chart.display()
-            ''',
-            "Plotly Express Example": '''
+        ''', language='python')
+
+        st.markdown('#### Plotly Express Example')
+        st.code('''
 # Interactive Scatter Plot
 fig = px.scatter(df, x='Age', y='Salary', color='City', hover_data=['Name'], title='Interactive Age vs Salary')
 st.plotly_chart(fig)
@@ -517,10 +576,13 @@ st.plotly_chart(fig)
 # Interactive Pie Chart
 fig = px.pie(df, names='Product', values='Sales', title='Interactive Sales Distribution by Product')
 st.plotly_chart(fig)
-            '''
-        },
-        "🤖 Machine Learning": {
-            "Scikit-learn Basics": '''
+        ''', language='python')
+
+    # Machine Learning Tab
+    with tabs[3]:
+        st.markdown('### 🤖 Machine Learning')
+        st.markdown('#### Scikit-learn Basics')
+        st.code('''
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error, r2_score
@@ -541,8 +603,10 @@ predictions = model.predict(X_test)
 mse = mean_squared_error(y_test, predictions)
 r2 = r2_score(y_test, predictions)
 print(f'MSE: {mse}, R2: {r2}')
-            ''',
-            "Classification Example": '''
+        ''', language='python')
+
+        st.markdown('#### Classification Example')
+        st.code('''
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
 
@@ -562,16 +626,20 @@ print('Confusion Matrix:')
 print(conf_matrix)
 print('Classification Report:')
 print(report)
-            ''',
-            "Cross-Validation": '''
+        ''', language='python')
+
+        st.markdown('#### Cross-Validation')
+        st.code('''
 from sklearn.model_selection import cross_val_score
 
 # 5-Fold Cross-Validation
 scores = cross_val_score(model, X, y, cv=5)
 print(f'Cross-Validation Scores: {scores}')
 print(f'Average CV Score: {scores.mean()}')
-            ''',
-            "Hyperparameter Tuning with GridSearchCV": '''
+        ''', language='python')
+
+        st.markdown('#### Hyperparameter Tuning with GridSearchCV')
+        st.code('''
 from sklearn.model_selection import GridSearchCV
 
 # Define parameter grid
@@ -592,15 +660,19 @@ print(grid_search.best_params_)
 
 # Best score
 print(grid_search.best_score_)
-            ''',
-            "Feature Scaling": '''
+        ''', language='python')
+
+        st.markdown('#### Feature Scaling')
+        st.code('''
 from sklearn.preprocessing import StandardScaler
 
 scaler = StandardScaler()
 X_train_scaled = scaler.fit_transform(X_train)
 X_test_scaled = scaler.transform(X_test)
-            ''',
-            "Handling Categorical Variables": '''
+        ''', language='python')
+
+        st.markdown('#### Handling Categorical Variables')
+        st.code('''
 # One-Hot Encoding
 X = pd.get_dummies(X, columns=['Category'])
 
@@ -608,8 +680,10 @@ X = pd.get_dummies(X, columns=['Category'])
 from sklearn.preprocessing import LabelEncoder
 le = LabelEncoder()
 X['Category'] = le.fit_transform(X['Category'])
-            ''',
-            "Model Persistence": '''
+        ''', language='python')
+
+        st.markdown('#### Model Persistence')
+        st.code('''
 import joblib
 
 # Save the model
@@ -618,10 +692,13 @@ joblib.dump(model, 'linear_regression_model.joblib')
 # Load the model
 loaded_model = joblib.load('linear_regression_model.joblib')
 print(loaded_model.predict([[25, 5]]))
-            '''
-        },
-        "🧠 Deep Learning": {
-            "TensorFlow/Keras Basics": '''
+        ''', language='python')
+
+    # Deep Learning Tab
+    with tabs[4]:
+        st.markdown('### 🧠 Deep Learning')
+        st.markdown('#### TensorFlow/Keras Basics')
+        st.code('''
 import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras import layers
@@ -644,8 +721,10 @@ model.fit(X_train, y_train, epochs=10, batch_size=32, validation_split=0.2)
 # Evaluate the model
 loss, accuracy = model.evaluate(X_test, y_test)
 print(f'Loss: {loss}, Accuracy: {accuracy}')
-            ''',
-            "PyTorch Basics": '''
+        ''', language='python')
+
+        st.markdown('#### PyTorch Basics')
+        st.code('''
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -686,8 +765,10 @@ for epoch in range(100):
         optimizer.step()
     if (epoch+1) % 10 == 0:
         print(f'Epoch {epoch+1}, Loss: {loss.item()}')
-            ''',
-            "Convolutional Neural Networks (CNN)": '''
+        ''', language='python')
+
+        st.markdown('#### Convolutional Neural Networks (CNN)')
+        st.code('''
 from tensorflow.keras import layers, models
 
 # Define CNN model
@@ -708,8 +789,10 @@ model.compile(optimizer='adam',
               metrics=['accuracy'])
 
 model.fit(train_images, train_labels, epochs=10, validation_data=(test_images, test_labels))
-            ''',
-            "Recurrent Neural Networks (RNN)": '''
+        ''', language='python')
+
+        st.markdown('#### Recurrent Neural Networks (RNN)')
+        st.code('''
 from tensorflow.keras import layers, models
 
 # Define RNN model
@@ -726,8 +809,10 @@ model.compile(optimizer='adam',
               metrics=['accuracy'])
 
 model.fit(X_train, y_train, epochs=10, batch_size=64, validation_split=0.2)
-            ''',
-            "LSTM Networks": '''
+        ''', language='python')
+
+        st.markdown('#### LSTM Networks')
+        st.code('''
 from tensorflow.keras import layers, models
 
 # Define LSTM model
@@ -744,8 +829,10 @@ model.compile(optimizer='adam',
               metrics=['accuracy'])
 
 model.fit(X_train, y_train, epochs=10, batch_size=64, validation_split=0.2)
-            ''',
-            "Model Saving and Loading": '''
+        ''', language='python')
+
+        st.markdown('#### Model Saving and Loading')
+        st.code('''
 # Saving the model
 model.save('my_model.h5')
 
@@ -755,10 +842,13 @@ loaded_model = keras.models.load_model('my_model.h5')
 # Using the loaded model for predictions
 predictions = loaded_model.predict(X_test)
 print(predictions)
-            '''
-        },
-        "📊 Statistical Analysis": {
-            "Descriptive Statistics": '''
+        ''', language='python')
+
+    # Statistical Analysis Tab
+    with tabs[5]:
+        st.markdown('### 📊 Statistical Analysis')
+        st.markdown('#### Descriptive Statistics')
+        st.code('''
 # Summary statistics
 df.describe()
 
@@ -773,8 +863,10 @@ df['Age'].std()
 
 # Quantiles
 df['Age'].quantile([0.25, 0.5, 0.75])
-            ''',
-            "Probability Distributions": '''
+        ''', language='python')
+
+        st.markdown('#### Probability Distributions')
+        st.code('''
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -804,8 +896,10 @@ plt.xlabel('Value')
 plt.ylabel('Frequency')
 plt.title('Poisson Distribution')
 plt.show()
-            ''',
-            "Hypothesis Testing": '''
+        ''', language='python')
+
+        st.markdown('#### Hypothesis Testing')
+        st.code('''
 from scipy import stats
 
 # T-Test
@@ -827,8 +921,10 @@ print(f'U-statistic: {u_stat}, P-value: {p_val}')
 # Kruskal-Wallis Test
 h_stat, p_val = stats.kruskal(group1, group2, group3)
 print(f'H-statistic: {h_stat}, P-value: {p_val}')
-            ''',
-            "Correlation Analysis": '''
+        ''', language='python')
+
+        st.markdown('#### Correlation Analysis')
+        st.code('''
 # Pearson Correlation
 pearson_corr = df['A'].corr(df['B'])
 print(f'Pearson Correlation: {pearson_corr}')
@@ -840,8 +936,10 @@ print(f'Spearman Correlation: {spearman_corr}')
 # Kendall Correlation
 kendall_corr = df['A'].corr(df['B'], method='kendall')
 print(f'Kendall Correlation: {kendall_corr}')
-            ''',
-            "Confidence Intervals": '''
+        ''', language='python')
+
+        st.markdown('#### Confidence Intervals')
+        st.code('''
 import scipy.stats as st
 
 # 95% Confidence Interval for the mean
@@ -856,8 +954,10 @@ print(f'Confidence Interval: {mean-h} to {mean+h}')
 confidence = 0.99
 h = stderr * st.t.ppf((1 + confidence) / 2., n-1)
 print(f'99% Confidence Interval: {mean-h} to {mean+h}')
-            ''',
-            "Regression Analysis": '''
+        ''', language='python')
+
+        st.markdown('#### Regression Analysis')
+        st.code('''
 import statsmodels.api as sm
 
 # Define independent variables (add constant)
@@ -873,8 +973,10 @@ print(model.summary())
 # Predictions
 predictions = model.predict(X)
 print(predictions)
-            ''',
-            "Bayesian Statistics": '''
+        ''', language='python')
+
+        st.markdown('#### Bayesian Statistics')
+        st.code('''
 import pymc3 as pm
 import numpy as np
 
@@ -900,10 +1002,13 @@ with pm.Model() as model:
 
 # Summary
 print(pm.summary(trace))
-            '''
-        },
-        "🔧 Data Engineering": {
-            "SQL Basics": '''
+        ''', language='python')
+
+    # Data Engineering Tab
+    with tabs[6]:
+        st.markdown('### 🔧 Data Engineering')
+        st.markdown('#### SQL Basics')
+        st.code('''
 -- Select statement
 SELECT column1, column2 FROM table_name;
 
@@ -942,8 +1047,10 @@ RIGHT JOIN table_b b ON a.id = b.a_id;
 SELECT a.column1, b.column2
 FROM table_a a
 FULL OUTER JOIN table_b b ON a.id = b.a_id;
-            ''',
-            "Database Connections with SQLAlchemy": '''
+        ''', language='sql')
+
+        st.markdown('#### Database Connections with SQLAlchemy')
+        st.code('''
 from sqlalchemy import create_engine
 import pandas as pd
 
@@ -961,8 +1068,10 @@ with engine.connect() as connection:
     result = connection.execute("SELECT COUNT(*) FROM table_name")
     count = result.fetchone()[0]
     print(f'Total records: {count}')
-            ''',
-            "ETL Processes": '''
+        ''', language='python')
+
+        st.markdown('#### ETL Processes')
+        st.code('''
 # Extract, Transform, Load (ETL) example using Pandas
 import pandas as pd
 
@@ -976,8 +1085,10 @@ df['Name'] = df['Name'].str.title()
 
 # Load
 df.to_csv('clean_data.csv', index=False)
-            ''',
-            "Data Pipelines with Airflow": '''
+        ''', language='python')
+
+        st.markdown('#### Data Pipelines with Airflow')
+        st.code('''
 from airflow import DAG
 from airflow.operators.python_operator import PythonOperator
 from datetime import datetime
@@ -1005,8 +1116,10 @@ with DAG('etl_pipeline', default_args=default_args, schedule_interval='@daily') 
     load_task = PythonOperator(task_id='load', python_callable=load)
 
     extract_task >> transform_task >> load_task
-            ''',
-            "Data Warehousing with Redshift": '''
+        ''', language='python')
+
+        st.markdown('#### Data Warehousing with Redshift')
+        st.code('''
 import psycopg2
 
 # Connect to Redshift
@@ -1042,8 +1155,10 @@ engine = create_engine('postgresql://username:password@redshift-cluster.amazonaw
 # Load data
 df = pd.read_csv('sales_data.csv')
 df.to_sql('sales_data', engine, if_exists='append', index=False)
-            ''',
-            "Data Lakes with Hadoop": '''
+        ''', language='python')
+
+        st.markdown('#### Data Lakes with Hadoop')
+        st.code('''
 # Install Hadoop
 !apt-get update
 !apt-get install -y openjdk-8-jdk-headless wget
@@ -1070,195 +1185,13 @@ os.environ['PATH'] += ':/usr/local/hadoop/bin:/usr/local/hadoop/sbin'
 
 # List HDFS directories
 !hdfs dfs -ls /data/
-            '''
-        },
-        "🛠 Tools & Utilities": {
-            "Virtual Environments with venv": '''
-# Create virtual environment
-python -m venv myenv
+        ''', language='bash')
 
-# Activate virtual environment
-# On Windows
-myenv\\Scripts\\activate
-# On macOS/Linux
-source myenv/bin/activate
-
-# Deactivate
-deactivate
-            ''',
-            "Package Management with pip": '''
-# Install a package
-pip install package_name
-
-# List installed packages
-pip list
-
-# Freeze requirements
-pip freeze > requirements.txt
-
-# Install from requirements
-pip install -r requirements.txt
-
-# Upgrade a package
-pip install --upgrade package_name
-
-# Uninstall a package
-pip uninstall package_name
-            ''',
-            "Docker Basics": '''
-# Pull an image
-docker pull python:3.8
-
-# Run a container
-docker run -it python:3.8 bash
-
-# Build an image from Dockerfile
-docker build -t myimage .
-
-# List running containers
-docker ps
-
-# Stop a container
-docker stop container_id
-
-# Remove a container
-docker rm container_id
-
-# Remove an image
-docker rmi myimage
-            ''',
-            "Jupyter Notebook Shortcuts": '''
-# Create a new notebook
-jupyter notebook
-
-# Keyboard Shortcuts
-- Shift + Enter: Run cell and move to next
-- Ctrl + Enter: Run cell
-- A: Insert cell above
-- B: Insert cell below
-- M: Convert to Markdown
-- Y: Convert to Code
-- D + D: Delete cell
-- Z: Undo cell deletion
-- H: Show help
-            ''',
-            "Git Commands": '''
-# Initialize repository
-git init
-
-# Clone repository
-git clone https://github.com/ahammadmejbah/Data-Science-Cheat-Sheet.git
-
-# Check status
-git status
-
-# Add changes
-git add .
-
-# Commit changes
-git commit -m "Commit message"
-
-# Push to remote
-git push origin main
-
-# Pull from remote
-git pull origin main
-
-# View commit history
-git log
-
-# View branches
-git branch
-
-# Create a new branch
-git branch feature-branch
-
-# Switch to a branch
-git checkout feature-branch
-
-# Merge branch into main
-git checkout main
-git merge feature-branch
-            ''',
-            "Git Branching": '''
-# Create a new branch
-git branch feature-branch
-
-# Switch to the branch
-git checkout feature-branch
-
-# Create and switch
-git checkout -b new-feature
-
-# Merge branch
-git checkout main
-git merge feature-branch
-
-# Delete branch
-git branch -d feature-branch
-
-# Rename branch
-git branch -m old-name new-name
-
-# List all branches
-git branch -a
-            ''',
-            "Git Stashing": '''
-# Stash changes
-git stash
-
-# Apply stashed changes
-git stash apply
-
-# List stashes
-git stash list
-
-# Drop a stash
-git stash drop stash@{0}
-
-# Pop the latest stash
-git stash pop
-            ''',
-            "Git Conflict Resolution": '''
-# After a merge conflict, edit the files to resolve
-
-# Add resolved files
-git add conflicted_file.py
-
-# Commit the merge
-git commit -m "Resolved merge conflict in conflicted_file.py"
-
-# Continue rebase
-git rebase --continue
-
-# Abort rebase
-git rebase --abort
-            ''',
-            "Git Rebasing": '''
-# Start rebase
-git checkout feature-branch
-git rebase main
-
-# Continue rebase after resolving conflicts
-git add .
-git rebase --continue
-
-# Abort rebase
-git rebase --abort
-
-# Interactive rebase
-git rebase -i HEAD~3
-            ''',
-            "Git Cherry-Picking": '''
-# Cherry-pick a commit
-git cherry-pick commit_hash
-
-# Cherry-pick a range of commits
-git cherry-pick start_commit^..end_commit
-            '''
-        },
-        "🌐 Web Scraping": {
-            "BeautifulSoup Basics": '''
+    # Web Scraping Tab
+    with tabs[7]:
+        st.markdown('### 🌐 Web Scraping')
+        st.markdown('#### BeautifulSoup Basics')
+        st.code('''
 import requests
 from bs4 import BeautifulSoup
 
@@ -1273,8 +1206,10 @@ titles = soup.find_all('h2')
 
 for title in titles:
     print(title.get_text())
-            ''',
-            "Scrapy Framework": '''
+        ''', language='python')
+
+        st.markdown('#### Scrapy Framework')
+        st.code('''
 import scrapy
 
 class ExampleSpider(scrapy.Spider):
@@ -1287,8 +1222,10 @@ class ExampleSpider(scrapy.Spider):
 
 # To run the spider
 # scrapy runspider example_spider.py -o output.json
-            ''',
-            "Handling JavaScript with Selenium": '''
+        ''', language='python')
+
+        st.markdown('#### Handling JavaScript with Selenium')
+        st.code('''
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 import time
@@ -1309,8 +1246,10 @@ for title in titles:
 
 # Close browser
 driver.quit()
-            ''',
-            "Handling AJAX Requests": '''
+        ''', language='python')
+
+        st.markdown('#### Handling AJAX Requests')
+        st.code('''
 import requests
 
 # Simulate AJAX request
@@ -1321,8 +1260,10 @@ headers = {'X-Requested-With': 'XMLHttpRequest'}
 response = requests.post(url, data=payload, headers=headers)
 data = response.json()
 print(data)
-            ''',
-            "Advanced Scraping with Proxies and Headers": '''
+        ''', language='python')
+
+        st.markdown('#### Advanced Scraping with Proxies and Headers')
+        st.code('''
 import requests
 from bs4 import BeautifulSoup
 
@@ -1347,10 +1288,13 @@ soup = BeautifulSoup(response.text, 'html.parser')
 data = soup.find_all('div', class_='data-class')
 for item in data:
     print(item.get_text())
-            '''
-        },
-        "📝 Version Control": {
-            "Basic Git Commands": '''
+        ''', language='python')
+
+    # Version Control Tab
+    with tabs[8]:
+        st.markdown('### 📝 Version Control')
+        st.markdown('#### Basic Git Commands')
+        st.code('''
 # Initialize repository
 git init
 
@@ -1383,8 +1327,10 @@ git branch feature-branch
 
 # Switch to a branch
 git checkout feature-branch
-            ''',
-            "Branching": '''
+        ''', language='bash')
+
+        st.markdown('#### Branching')
+        st.code('''
 # Create a new branch
 git branch feature-branch
 
@@ -1406,8 +1352,10 @@ git branch -m old-name new-name
 
 # List all branches
 git branch -a
-            ''',
-            "Stashing Changes": '''
+        ''', language='bash')
+
+        st.markdown('#### Stashing Changes')
+        st.code('''
 # Stash changes
 git stash
 
@@ -1422,8 +1370,10 @@ git stash drop stash@{0}
 
 # Pop the latest stash
 git stash pop
-            ''',
-            "Resolving Conflicts": '''
+        ''', language='bash')
+
+        st.markdown('#### Resolving Conflicts')
+        st.code('''
 # After a merge conflict, edit the files to resolve
 
 # Add resolved files
@@ -1437,8 +1387,10 @@ git rebase --continue
 
 # Abort rebase
 git rebase --abort
-            ''',
-            "Rebasing": '''
+        ''', language='bash')
+
+        st.markdown('#### Rebasing')
+        st.code('''
 # Start rebase
 git checkout feature-branch
 git rebase main
@@ -1452,17 +1404,22 @@ git rebase --abort
 
 # Interactive rebase
 git rebase -i HEAD~3
-            ''',
-            "Cherry-Picking": '''
+        ''', language='bash')
+
+        st.markdown('#### Cherry-Picking')
+        st.code('''
 # Cherry-pick a commit
 git cherry-pick commit_hash
 
 # Cherry-pick a range of commits
 git cherry-pick start_commit^..end_commit
-            '''
-        },
-        "☁️ Cloud Services": {
-            "AWS Basics": '''
+        ''', language='bash')
+
+    # Cloud Services Tab
+    with tabs[9]:
+        st.markdown('### ☁️ Cloud Services')
+        st.markdown('#### AWS Basics')
+        st.code('''
 # Install AWS CLI
 pip install awscli
 
@@ -1480,8 +1437,10 @@ aws s3 cp s3://mybucket/file.txt .
 
 # Sync local directory with S3
 aws s3 sync ./local_folder s3://mybucket/folder
-            ''',
-            "Google Cloud Platform (GCP) Basics": '''
+        ''', language='bash')
+
+        st.markdown('#### Google Cloud Platform (GCP) Basics')
+        st.code('''
 # Install Google Cloud SDK
 # Visit https://cloud.google.com/sdk/docs/install for installation steps
 
@@ -1499,8 +1458,10 @@ gcloud compute instances list
 
 # Create a new Compute Engine instance
 gcloud compute instances create my-instance --zone=us-central1-a
-            ''',
-            "Microsoft Azure Basics": '''
+        ''', language='bash')
+
+        st.markdown('#### Microsoft Azure Basics')
+        st.code('''
 # Install Azure CLI
 # Visit https://docs.microsoft.com/en-us/cli/azure/install-azure-cli for installation steps
 
@@ -1518,8 +1479,10 @@ az vm list
 
 # Create a virtual machine
 az vm create --resource-group myResourceGroup --name myVM --image UbuntuLTS --admin-username azureuser --generate-ssh-keys
-            ''',
-            "Deploying Models to AWS SageMaker": '''
+        ''', language='bash')
+
+        st.markdown('#### Deploying Models to AWS SageMaker')
+        st.code('''
 import boto3
 import sagemaker
 from sagemaker import get_execution_role
@@ -1540,8 +1503,10 @@ predictor = model.deploy(instance_type='ml.m4.xlarge', initial_instance_count=1)
 # Make predictions
 response = predictor.predict({'data': [sample_data]})
 print(response)
-            ''',
-            "Azure Machine Learning": '''
+        ''', language='python')
+
+        st.markdown('#### Azure Machine Learning')
+        st.code('''
 from azureml.core import Workspace, Dataset
 
 # Connect to workspace
@@ -1555,8 +1520,10 @@ df = dataset.to_pandas_dataframe()
 
 # Register a new dataset
 new_dataset = Dataset.Tabular.register_pandas_dataframe(df, ws, 'new_dataset_name')
-            ''',
-            "Google Cloud AI Platform": '''
+        ''', language='python')
+
+        st.markdown('#### Google Cloud AI Platform')
+        st.code('''
 from google.cloud import aiplatform
 
 # Initialize AI Platform
@@ -1578,10 +1545,13 @@ endpoint = model.deploy(
 # Make predictions
 response = endpoint.predict(instances=[sample_instance])
 print(response)
-            '''
-        },
-        "🔍 Natural Language Processing (NLP)": {
-            "Text Preprocessing": '''
+        ''', language='python')
+
+    # NLP Tab
+    with tabs[10]:
+        st.markdown('### 🔍 Natural Language Processing (NLP)')
+        st.markdown('#### Text Preprocessing')
+        st.code('''
 import nltk
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
@@ -1605,9 +1575,12 @@ def preprocess(text):
 
 sample_text = "Data Science is amazing! Let's explore its potentials."
 print(preprocess(sample_text))
-            ''',
-            "Bag of Words with Scikit-learn": '''
+        ''', language='python')
+
+        st.markdown('#### Bag of Words with Scikit-learn')
+        st.code('''
 from sklearn.feature_extraction.text import CountVectorizer
+import pandas as pd
 
 # Sample documents
 documents = [
@@ -1627,12 +1600,14 @@ features = vectorizer.get_feature_names_out()
 print(features)
 
 # Convert to DataFrame
-import pandas as pd
 df_bow = pd.DataFrame(X.toarray(), columns=features)
 print(df_bow)
-            ''',
-            "TF-IDF Vectorization": '''
+        ''', language='python')
+
+        st.markdown('#### TF-IDF Vectorization')
+        st.code('''
 from sklearn.feature_extraction.text import TfidfVectorizer
+import pandas as pd
 
 # Sample documents
 documents = [
@@ -1654,9 +1629,18 @@ print(features)
 # Convert to DataFrame
 df_tfidf = pd.DataFrame(X.toarray(), columns=features)
 print(df_tfidf)
-            ''',
-            "Word Embeddings with Gensim": '''
+        ''', language='python')
+
+        st.markdown('#### Word Embeddings with Gensim')
+        st.code('''
 from gensim.models import Word2Vec
+
+# Sample documents
+documents = [
+    "Data Science is fascinating.",
+    "Machine Learning is a subset of Data Science.",
+    "Natural Language Processing is a part of Machine Learning."
+]
 
 # Tokenize sentences
 sentences = [doc.split() for doc in documents]
@@ -1671,8 +1655,10 @@ print(vector)
 # Find similar words
 similar = model.wv.most_similar('Data', topn=3)
 print(similar)
-            ''',
-            "Sentiment Analysis with NLTK": '''
+        ''', language='python')
+
+        st.markdown('#### Sentiment Analysis with NLTK')
+        st.code('''
 from nltk.sentiment import SentimentIntensityAnalyzer
 
 # Initialize
@@ -1684,8 +1670,10 @@ print(sentiment)
 
 # Example output:
 # {'neg': 0.0, 'neu': 0.392, 'pos': 0.608, 'compound': 0.6696}
-            ''',
-            "Named Entity Recognition with SpaCy": '''
+        ''', language='python')
+
+        st.markdown('#### Named Entity Recognition with SpaCy')
+        st.code('''
 import spacy
 
 # Load SpaCy model
@@ -1700,8 +1688,10 @@ doc = nlp(text)
 # Extract entities
 for ent in doc.ents:
     print(ent.text, ent.label_)
-            ''',
-            "Topic Modeling with LDA": '''
+        ''', language='python')
+
+        st.markdown('#### Topic Modeling with LDA')
+        st.code('''
 from sklearn.decomposition import LatentDirichletAllocation
 from sklearn.feature_extraction.text import CountVectorizer
 
@@ -1727,8 +1717,10 @@ lda.fit(X)
 for index, topic in enumerate(lda.components_):
     print(f'Topic #{index +1}:')
     print([vectorizer.get_feature_names_out()[i] for i in topic.argsort()[-5:]])
-            ''',
-            "Text Classification with Scikit-learn": '''
+        ''', language='python')
+
+        st.markdown('#### Text Classification with Scikit-learn')
+        st.code('''
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import classification_report
@@ -1759,10 +1751,13 @@ predictions = clf.predict(X_test)
 
 # Evaluation
 print(classification_report(y_test, predictions))
-            '''
-        },
-        "📅 Time Series": {
-            "Time Series Decomposition": '''
+        ''', language='python')
+
+    # Time Series Tab
+    with tabs[11]:
+        st.markdown('### 📅 Time Series')
+        st.markdown('#### Time Series Decomposition')
+        st.code('''
 import pandas as pd
 from statsmodels.tsa.seasonal import seasonal_decompose
 import matplotlib.pyplot as plt
@@ -1774,8 +1769,10 @@ df = pd.read_csv('timeseries.csv', parse_dates=['Date'], index_col='Date')
 decomposition = seasonal_decompose(df['Value'], model='additive')
 fig = decomposition.plot()
 plt.show()
-            ''',
-            "ARIMA Modeling": '''
+        ''', language='python')
+
+        st.markdown('#### ARIMA Modeling')
+        st.code('''
 from statsmodels.tsa.arima.model import ARIMA
 
 # Fit ARIMA model
@@ -1788,8 +1785,10 @@ print(model_fit.summary())
 # Forecast
 forecast = model_fit.forecast(steps=10)
 print(forecast)
-            ''',
-            "Prophet Forecasting": '''
+        ''', language='python')
+
+        st.markdown('#### Prophet Forecasting')
+        st.code('''
 from fbprophet import Prophet
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -1814,8 +1813,10 @@ plt.show()
 # Plot components
 fig2 = model.plot_components(forecast)
 plt.show()
-            ''',
-            "Rolling Statistics": '''
+        ''', language='python')
+
+        st.markdown('#### Rolling Statistics')
+        st.code('''
 # Moving Average
 df['MA'] = df['Value'].rolling(window=12).mean()
 
@@ -1830,8 +1831,10 @@ plt.plot(df['STD'], label='Moving Std Dev')
 plt.legend()
 plt.title('Rolling Statistics')
 plt.show()
-            ''',
-            "Seasonal ARIMA (SARIMA)": '''
+        ''', language='python')
+
+        st.markdown('#### Seasonal ARIMA (SARIMA)')
+        st.code('''
 from statsmodels.tsa.statespace.sarimax import SARIMAX
 
 # Define SARIMA model
@@ -1850,9 +1853,12 @@ print(forecast.predicted_mean)
 # Plot forecast
 forecast.plot()
 plt.show()
-            ''',
-            "Exponential Smoothing": '''
+        ''', language='python')
+
+        st.markdown('#### Exponential Smoothing')
+        st.code('''
 from statsmodels.tsa.holtwinters import ExponentialSmoothing
+import matplotlib.pyplot as plt
 
 # Fit model
 model = ExponentialSmoothing(df['Value'], trend='add', seasonal='add', seasonal_periods=12)
@@ -1872,10 +1878,13 @@ plt.plot(forecast, label='Forecast')
 plt.legend()
 plt.title('Exponential Smoothing Forecast')
 plt.show()
-            '''
-        },
-        "🔄 Data Pipelines": {
-            "Scikit-learn Pipelines": '''
+        ''', language='python')
+
+    # Data Pipelines Tab
+    with tabs[12]:
+        st.markdown('### 🔄 Data Pipelines')
+        st.markdown('#### Scikit-learn Pipelines')
+        st.code('''
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LogisticRegression
@@ -1892,11 +1901,14 @@ pipeline.fit(X_train, y_train)
 # Predict
 predictions = pipeline.predict(X_test)
 print(predictions)
-            ''',
-            "FeatureUnion for Parallel Processing": '''
+        ''', language='python')
+
+        st.markdown('#### FeatureUnion for Parallel Processing')
+        st.code('''
 from sklearn.pipeline import FeatureUnion
 from sklearn.decomposition import PCA
 from sklearn.feature_selection import SelectKBest
+from sklearn.linear_model import LogisticRegression
 
 # Define FeatureUnion
 features = FeatureUnion([
@@ -1911,9 +1923,13 @@ pipeline = Pipeline([
 ])
 
 pipeline.fit(X_train, y_train)
-            ''',
-            "Custom Transformers": '''
+        ''', language='python')
+
+        st.markdown('#### Custom Transformers')
+        st.code('''
 from sklearn.base import BaseEstimator, TransformerMixin
+from sklearn.linear_model import LogisticRegression
+from sklearn.pipeline import Pipeline
 
 class CustomTransformer(BaseEstimator, TransformerMixin):
     def __init__(self, param=1):
@@ -1933,8 +1949,10 @@ pipeline = Pipeline([
 ])
 
 pipeline.fit(X_train, y_train)
-            ''',
-            "Pipeline with Multiple Steps": '''
+        ''', language='python')
+
+        st.markdown('#### Pipeline with Multiple Steps')
+        st.code('''
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.compose import ColumnTransformer
@@ -1972,8 +1990,10 @@ pipeline.fit(X_train, y_train)
 # Predict
 predictions = pipeline.predict(X_test)
 print(predictions)
-            ''',
-            "Pipeline with Feature Selection": '''
+        ''', language='python')
+
+        st.markdown('#### Pipeline with Feature Selection')
+        st.code('''
 from sklearn.pipeline import Pipeline
 from sklearn.feature_selection import SelectKBest, f_classif
 from sklearn.preprocessing import StandardScaler
@@ -1992,10 +2012,13 @@ pipeline.fit(X_train, y_train)
 # Predict
 predictions = pipeline.predict(X_test)
 print(predictions)
-            '''
-        },
-        "🚀 Deployment": {
-            "Saving and Loading Models": '''
+        ''', language='python')
+
+    # Deployment Tab
+    with tabs[13]:
+        st.markdown('### 🚀 Deployment')
+        st.markdown('#### Saving and Loading Models')
+        st.code('''
 import joblib
 import pickle
 
@@ -2014,8 +2037,10 @@ with open('linear_regression_model.pkl', 'wb') as f:
 with open('linear_regression_model.pkl', 'rb') as f:
     loaded_model_pickle = pickle.load(f)
 print(loaded_model_pickle.predict([[30, 10]]))
-            ''',
-            "Deploying with Streamlit": '''
+        ''', language='python')
+
+        st.markdown('#### Deploying with Streamlit')
+        st.code('''
 # Create a simple Streamlit app to deploy the model
 import streamlit as st
 import joblib
@@ -2033,8 +2058,10 @@ experience = st.number_input('Years of Experience', min_value=0, max_value=80, v
 if st.button('Predict'):
     prediction = model.predict([[age, experience]])
     st.success(f'Predicted Salary: ${prediction[0]:.2f}')
-            ''',
-            "Deploying with Flask": '''
+        ''', language='python')
+
+        st.markdown('#### Deploying with Flask')
+        st.code('''
 from flask import Flask, request, jsonify
 import joblib
 
@@ -2051,8 +2078,10 @@ def predict():
 
 if __name__ == '__main__':
     app.run(debug=True)
-            ''',
-            "Deploying with Docker": '''
+        ''', language='python')
+
+        st.markdown('#### Deploying with Docker')
+        st.code('''
 # Dockerfile
 FROM python:3.8-slim
 
@@ -2070,8 +2099,10 @@ EXPOSE 8501
 
 # Run Streamlit app
 CMD ["streamlit", "run", "app.py"]
-            ''',
-            "Deploying to AWS Elastic Beanstalk": '''
+        ''', language='dockerfile')
+
+        st.markdown('#### Deploying to AWS Elastic Beanstalk')
+        st.code('''
 # Initialize Elastic Beanstalk
 eb init -p python-3.8 my-data-science-app
 
@@ -2083,8 +2114,10 @@ eb open
 
 # Update application
 eb deploy
-            ''',
-            "Deploying to Heroku": '''
+        ''', language='bash')
+
+        st.markdown('#### Deploying to Heroku')
+        st.code('''
 # Create a Procfile
 echo "web: streamlit run app.py" > Procfile
 
@@ -2104,8 +2137,10 @@ git push heroku main
 
 # Open the app
 heroku open
-            ''',
-            "Containerizing with Docker Compose": '''
+        ''', language='bash')
+
+        st.markdown('#### Containerizing with Docker Compose')
+        st.code('''
 # docker-compose.yml
 version: '3'
 
@@ -2119,23 +2154,7 @@ services:
     environment:
       - STREAMLIT_SERVER_PORT=8501
     command: streamlit run app.py
-            '''
-        }
-    }
-
-    # Iterate through sections and display content
-    for section, topics in sections.items():
-        st.markdown(f'### {section}')
-        for topic, code in topics.items():
-            language = 'python'
-            if 'bash' in topic.lower() or 'shell' in topic.lower():
-                language = 'bash'
-            elif 'sql' in topic.lower():
-                language = 'sql'
-            elif 'text' in topic.lower():
-                language = 'text'
-            st.markdown(f'#### {topic}')
-            st.code(code, language=language)
+        ''', language='yaml')
 
     # Footer with social media links
     st.markdown(f"""
