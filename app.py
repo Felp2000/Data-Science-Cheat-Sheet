@@ -77,7 +77,7 @@ $ streamlit run app.py
     ''')
 
     st.sidebar.markdown('''<hr>''', unsafe_allow_html=True)
-    st.sidebar.markdown('''<small>[Cheat sheet v1.0](https://github.com/yourrepo/ds-cheat-sheet) | Nov 2023 | [Your Name](https://yourwebsite.com)</small>''', unsafe_allow_html=True)
+    st.sidebar.markdown('''<small>[Cheat sheet v1.0](https://github.com/ahammadmejbah/Data-Science-Cheat-Sheet) | Nov 2023 | [Mejbah Ahammad](https://ahammadmejbah.com/)</small>''', unsafe_allow_html=True)
 
 # Main body of cheat sheet
 def ds_body():
