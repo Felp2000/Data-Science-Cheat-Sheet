@@ -1930,25 +1930,43 @@ services:
         }
     }
 
-    # Iterate through main categories and create tabs
-    for main_category, subtopics in sections.items():
-        with st.container():
-            st.markdown(f'### {main_category}')
-            sub_tabs = st.tabs(list(subtopics.keys()))
-            for sub_tab, code in zip(sub_tabs, subtopics.values()):
-                with sub_tab:
-                    language = 'python'
-                    if 'bash' in sub_tab.title.lower() or 'shell' in sub_tab.title.lower():
-                        language = 'bash'
-                    elif 'sql' in sub_tab.title.lower():
-                        language = 'sql'
-                    elif 'dockerfile' in sub_tab.title.lower():
-                        language = 'dockerfile'
-                    elif 'yaml' in sub_tab.title.lower():
-                        language = 'yaml'
-                    elif 'text' in sub_tab.title.lower():
-                        language = 'text'
-                    st.code(code, language=language)
+    # Split main categories into two rows
+    main_categories = list(sections.keys())
+    mid_point = len(main_categories) // 2
+    row1_categories = main_categories[:mid_point]
+    row2_categories = main_categories[mid_point:]
+
+    # Function to render a row of tabs
+    def render_tab_row(categories):
+        tab_titles = categories
+        tabs = st.tabs(tab_titles)
+        for category, tab in zip(categories, tabs):
+            with tab:
+                subtopics = sections[category]
+                sub_tabs = st.tabs(list(subtopics.keys()))
+                for sub_tab, (sub_title, code) in zip(sub_tabs, subtopics.items()):
+                    with sub_tab:
+                        # Determine language based on sub_title
+                        language = 'python'
+                        if 'bash' in sub_title.lower() or 'shell' in sub_title.lower():
+                            language = 'bash'
+                        elif 'sql' in sub_title.lower():
+                            language = 'sql'
+                        elif 'dockerfile' in sub_title.lower():
+                            language = 'dockerfile'
+                        elif 'yaml' in sub_title.lower():
+                            language = 'yaml'
+                        elif 'text' in sub_title.lower():
+                            language = 'text'
+                        elif 'docker' in sub_title.lower() and 'compose' in sub_title.lower():
+                            language = 'yaml'
+                        st.code(code, language=language)
+
+    # Render first row of tabs
+    render_tab_row(row1_categories)
+
+    # Render second row of tabs
+    render_tab_row(row2_categories)
 
     # Footer with social media links
     st.markdown(f"""
