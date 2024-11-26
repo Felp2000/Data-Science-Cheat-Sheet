@@ -1,6 +1,7 @@
 import streamlit as st
 from pathlib import Path
 import base64
+import requests
 
 # Initial page config
 st.set_page_config(
@@ -13,19 +14,27 @@ def main():
     ds_sidebar()
     ds_body()
 
-# Function to convert image to bytes (for logo)
-def img_to_bytes(img_path):
+# Function to convert image to base64 bytes (for logo)
+def img_to_bytes(img_url):
     try:
-        img_bytes = Path(img_path).read_bytes()
+        response = requests.get(img_url)
+        img_bytes = response.content
         encoded = base64.b64encode(img_bytes).decode()
         return encoded
-    except FileNotFoundError:
+    except:
         return ''
 
 # Sidebar content
 def ds_sidebar():
+    logo_url = 'https://ahammadmejbah.com/content/images/2024/10/Mejbah-Ahammad-Profile-8.png'
+    logo_encoded = img_to_bytes(logo_url)
+    
     st.sidebar.markdown(
-        f"[<img src='data:image/png;base64,{img_to_bytes('logo.png')}' class='img-fluid' width=32 height=32>](https://streamlit.io/)",
+        f"""
+        <a href="https://streamlit.io/">
+            <img src='data:image/png;base64,{logo_encoded}' class='img-fluid' width=100>
+        </a>
+        """,
         unsafe_allow_html=True
     )
     st.sidebar.header('🧰 Data Science Cheat Sheet')
@@ -81,6 +90,7 @@ def ds_body():
                 padding: 20px;
                 text-align: center;
                 border-radius: 10px;
+                margin-bottom: 20px;
             }
             .header h1 {
                 color: #FFFFFF;
@@ -130,15 +140,20 @@ def ds_body():
             }
             /* Footer Styling */
             .footer {
-                position: relative;
-                bottom: 0;
-                width: 100%;
                 background-color: #2E3440;
                 color: white;
                 text-align: center;
-                padding: 10px;
+                padding: 20px;
                 margin-top: 50px;
                 border-top: 2px solid #FF4B4B;
+            }
+            .social-icons img {
+                width: 30px;
+                margin: 0 10px;
+                transition: transform 0.2s;
+            }
+            .social-icons img:hover {
+                transform: scale(1.1);
             }
             /* Responsive Design */
             @media (max-width: 768px) {
@@ -149,6 +164,13 @@ def ds_body():
                     padding: 8px 16px;
                     margin: 3px;
                     font-size: 0.9em;
+                }
+                .footer {
+                    padding: 15px;
+                }
+                .social-icons img {
+                    width: 25px;
+                    margin: 0 5px;
                 }
             }
         </style>
@@ -1499,9 +1521,25 @@ eb open
 
         # Add more deployment methods and examples...
 
-    # Footer
+    # Footer with social media links
     st.markdown(f"""
         <div class="footer">
+            <p>Connect with me:</p>
+            <div class="social-icons">
+                <a href="https://facebook.com/ahammadmejbah" target="_blank">
+                    <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook" />
+                </a>
+                <a href="https://instagram.com/ahammadmejbah" target="_blank">
+                    <img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Instagram" />
+                </a>
+                <a href="https://github.com/ahammadmejbah" target="_blank">
+                    <img src="https://cdn-icons-png.flaticon.com/512/733/733553.png" alt="GitHub" />
+                </a>
+                <a href="https://ahammadmejbah.com/" target="_blank">
+                    <img src="https://cdn-icons-png.flaticon.com/512/919/919827.png" alt="Portfolio" />
+                </a>
+            </div>
+            <br>
             <small>Cheat sheet v1.0 | Nov 2023 | <a href="https://yourwebsite.com" style="color: #FF4B4B;">Your Name</a></small>
         </div>
     """, unsafe_allow_html=True)
