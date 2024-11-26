@@ -1970,7 +1970,7 @@ services:
 
     # Footer with social media links
     st.markdown(f"""
-        <div style="background-color: #ffffff; color: white; text-align: center; padding: 20px; margin-top: 50px; border-top: 2px solid #000000;">
+        <div style="background-color: #FF0000; color: white; text-align: center; padding: 20px; margin-top: 50px; border-top: 2px solid #FF0000;">
             <p>Connect with me:</p>
             <div style="display: flex; justify-content: center; gap: 20px;">
                 <a href="https://facebook.com/ahammadmejbah" target="_blank">
@@ -1987,7 +1987,7 @@ services:
                 </a>
             </div>
             <br>
-            <small>Cheat sheet v1.0 | Nov 2024 | <a href="https://ahammadmejbah.com/" style="color: #000000;">Mejbah Ahammad</a></small>
+            <small>Cheat sheet v1.0 | Nov 2024 | <a href="https://ahammadmejbah.com/" style="color: #FF0000;">Mejbah Ahammad</a></small>
             <div class="card-footer">Mejbah Ahammad © 2024</div>
         </div>
     """, unsafe_allow_html=True)
