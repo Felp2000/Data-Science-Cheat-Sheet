@@ -1987,7 +1987,7 @@ services:
                 </a>
             </div>
             <br>
-            <small>Cheat sheet v1.0 | Nov 2024 | <a href="https://ahammadmejbah.com/" style="color: #FF4B4B;">Mejbah Ahammad</a></small>
+            <small>Cheat sheet v1.0 | Nov 2024 | <a href="https://ahammadmejbah.com/" style="color: #000000;">Mejbah Ahammad</a></small>
             <div class="card-footer">Mejbah Ahammad © 2024</div>
         </div>
     """, unsafe_allow_html=True)
