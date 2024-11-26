@@ -1970,7 +1970,7 @@ services:
 
     # Footer with social media links
     st.markdown(f"""
-        <div style="background-color: #FF0000; color: white; text-align: center; padding: 20px; margin-top: 50px; border-top: 2px solid #000000;">
+        <div style="background-color: #FFFFFF; color: white; text-align: center; padding: 20px; margin-top: 50px; border-top: 2px solid #000000;">
             <p>Connect with me:</p>
             <div style="display: flex; justify-content: center; gap: 20px;">
                 <a href="https://facebook.com/ahammadmejbah" target="_blank">
