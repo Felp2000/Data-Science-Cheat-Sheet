@@ -4,7 +4,7 @@ import requests
 
 # Initial page config
 st.set_page_config(
-    page_title='📊 Comprehensive Data Science Cheat Sheet',
+    page_title='📊 Data Science Cheat Sheet By Mejbah Ahammad',
     layout="wide",
     initial_sidebar_state="expanded",
 )
@@ -76,7 +76,7 @@ $ streamlit run app.py
     ''')
 
     st.sidebar.markdown('''<hr>''', unsafe_allow_html=True)
-    st.sidebar.markdown('''<small>[Cheat sheet v1.0](https://github.com/ahammadmejbah/Data-Science-Cheat-Sheet) | Nov 2024 | [Mejbah Ahammad](https://ahammadmejbah.com/)<div class="card-footer">Mejbah Ahammad © 2024</div></small>''', unsafe_allow_html=True)
+    st.sidebar.markdown('''<small>[Data Science Cheat Sheet v1.0](https://github.com/ahammadmejbah/Data-Science-Cheat-Sheet) | Nov 2024 | [Mejbah Ahammad](https://ahammadmejbah.com/)<div class="card-footer">Mejbah Ahammad © 2024</div></small>''', unsafe_allow_html=True)
 
 # Main body of cheat sheet
 def ds_body():
@@ -1987,7 +1987,7 @@ services:
                 </a>
             </div>
             <br>
-            Cheat sheet v1.0 | Nov 2024 | <a href="https://ahammadmejbah.com/" style="color: #000000;">Mejbah Ahammad</a>
+            Data Science Cheat Sheet v1.0 | Nov 2024 | <a href="https://ahammadmejbah.com/" style="color: #000000;">Mejbah Ahammad</a>
             <div class="card-footer">Mejbah Ahammad © 2024</div>
         </div>
     """, unsafe_allow_html=True)
